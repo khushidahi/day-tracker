@@ -117,6 +117,3 @@ day-tracker/
 | GET | `/api/days` | Get list of all days with data |
 | DELETE | `/api/day/:date` | Delete a day's data |
 
-## License
-
-MIT
