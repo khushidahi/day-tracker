@@ -263,6 +263,9 @@
             grid-template-columns: repeat(24, 1fr);
             gap: 2px;
             margin-bottom: 15px;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
         }
         
         .hour-column {
@@ -287,6 +290,7 @@
             transition: all 0.15s ease;
             cursor: pointer;
             position: relative;
+            touch-action: none;
         }
         
         .block:hover {
@@ -1006,10 +1010,12 @@
             .day-grid {
                 grid-template-columns: repeat(12, 1fr);
                 gap: 3px;
+                padding: 10px 0;
             }
             
             .block {
                 border-radius: 3px;
+                min-height: 12px;
             }
             
             .block:hover {
@@ -2496,34 +2502,43 @@
         document.addEventListener('mouseup', handleBlockMouseUp);
         
         // Event listeners - Touch (mobile)
-        document.getElementById('day-grid').addEventListener('touchstart', handleBlockTouchStart, { passive: false });
-        document.addEventListener('touchmove', handleBlockTouchMove, { passive: false });
-        document.addEventListener('touchend', handleBlockTouchEnd);
+        const dayGrid = document.getElementById('day-grid');
+        dayGrid.addEventListener('touchstart', handleBlockTouchStart, { passive: false });
+        dayGrid.addEventListener('touchmove', handleBlockTouchMove, { passive: false });
+        dayGrid.addEventListener('touchend', handleBlockTouchEnd, { passive: false });
         
         function handleBlockTouchStart(e) {
             if (isReadOnly) return;
+            
             const touch = e.touches[0];
-            const target = document.elementFromPoint(touch.clientX, touch.clientY);
-            if (!target || !target.classList.contains('block')) return;
+            const target = e.target;
+            
+            if (!target.classList.contains('block')) return;
             
             e.preventDefault();
+            e.stopPropagation();
+            
             isSelecting = true;
             selectionStart = parseInt(target.dataset.index);
             selectedBlocks.clear();
             selectedBlocks.add(selectionStart);
-            renderDayGrid();
+            
+            updateBlockSelectionVisual();
             updateSelectionDisplay();
         }
         
         function handleBlockTouchMove(e) {
             if (!isSelecting) return;
+            
             e.preventDefault();
+            e.stopPropagation();
             
             const touch = e.touches[0];
-            const blockEl = document.elementFromPoint(touch.clientX, touch.clientY);
-            if (!blockEl || !blockEl.classList.contains('block')) return;
+            const element = document.elementFromPoint(touch.clientX, touch.clientY);
             
-            const currentIndex = parseInt(blockEl.dataset.index);
+            if (!element || !element.classList.contains('block')) return;
+            
+            const currentIndex = parseInt(element.dataset.index);
             const start = Math.min(selectionStart, currentIndex);
             const end = Math.max(selectionStart, currentIndex);
             
@@ -2532,12 +2547,28 @@
                 selectedBlocks.add(i);
             }
             
-            renderDayGrid();
+            updateBlockSelectionVisual();
             updateSelectionDisplay();
         }
         
-        function handleBlockTouchEnd() {
+        function handleBlockTouchEnd(e) {
+            if (isSelecting) {
+                e.preventDefault();
+            }
             isSelecting = false;
+        }
+        
+        // Fast visual update without full re-render
+        function updateBlockSelectionVisual() {
+            const blocks = dayGrid.querySelectorAll('.block');
+            blocks.forEach(block => {
+                const index = parseInt(block.dataset.index);
+                if (selectedBlocks.has(index)) {
+                    block.classList.add('selected');
+                } else {
+                    block.classList.remove('selected');
+                }
+            });
         }
         
         document.getElementById('create-btn').addEventListener('click', createTimeBlock);
