@@ -12,11 +12,27 @@ There's also:
 - A daily planning section where you can jot down what you want to get done
 - A dashboard that shows where your time went over any date range
 - History view to browse past days — useful for weekly reviews or seeing what you were up to last Tuesday
-- Works on mobile (I use it from my phone a lot)
 
 ![Dashboard](screenshots/dashboard.png)
 
 ![History](screenshots/history.png)
+
+## Mobile
+
+I use this from my phone constantly, so the mobile experience had to be good.
+
+![Mobile Timeline](screenshots/mobile-timeline.png)
+
+The desktop grid doesn't work well on a small screen, so mobile gets a different UI:
+- **Visual timeline bar** — your whole day shown as a compact horizontal bar with colored blocks
+- **Time picker** — tap From/To inputs to select times with the native picker (way easier than tiny grid blocks)
+- **Quick duration buttons** — one tap to set "30 min", "1 hour", etc. starting from now
+- **Bottom navigation** — thumb-friendly access to Today, History, and Dashboard
+- **Swipe navigation** — swipe on the header to jump between days
+
+Tap any block on the timeline to select it and see its details.
+
+![Mobile Create](screenshots/mobile-create.png)
 
 ## Running it
 

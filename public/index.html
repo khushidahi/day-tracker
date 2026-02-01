@@ -202,6 +202,17 @@
             margin-top: 25px;
         }
         
+        .main-content.read-only-layout {
+            grid-template-columns: 1fr;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .main-content.read-only-layout .sidebar {
+            width: 100%;
+        }
+        
         @media (max-width: 1100px) {
             .main-content {
                 grid-template-columns: 1fr;
@@ -675,6 +686,35 @@
             text-align: right;
         }
         
+        .dashboard-quick-filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        
+        .quick-filter-btn {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            color: #a8b2d1;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quick-filter-btn:hover {
+            background: rgba(100, 255, 218, 0.1);
+            border-color: rgba(100, 255, 218, 0.3);
+        }
+        
+        .quick-filter-btn.active {
+            background: rgba(100, 255, 218, 0.2);
+            border-color: #64ffda;
+            color: #64ffda;
+        }
+        
         .date-range-picker {
             display: flex;
             gap: 10px;
@@ -750,6 +790,22 @@
             flex: 1;
             font-size: 0.9rem;
             color: #e0e0e0;
+            cursor: pointer;
+        }
+        
+        .plan-text:hover {
+            color: #64ffda;
+        }
+        
+        .plan-edit-input {
+            flex: 1;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #64ffda;
+            border-radius: 6px;
+            padding: 6px 10px;
+            outline: none;
         }
         
         .plan-delete {
@@ -1004,209 +1060,375 @@
         /* Mobile-friendly styles */
         @media (max-width: 768px) {
             body {
-                padding: 15px 10px;
+                padding: 0 0 70px 0;
+                background: #1a1a2e;
             }
             
-            .day-grid {
-                grid-template-columns: repeat(12, 1fr);
-                gap: 3px;
-                padding: 10px 0;
+            .container {
+                padding: 0;
             }
             
-            .block {
-                border-radius: 3px;
-                min-height: 12px;
-            }
-            
-            .block:hover {
-                transform: scale(1.2);
-            }
-            
-            .hour-label {
-                font-size: 0.55rem;
-                padding: 2px 0;
-            }
-            
-            h1 {
-                font-size: 1.4rem;
-            }
-            
-            .subtitle {
-                font-size: 0.85rem;
-            }
-            
-            .stats {
-                gap: 15px;
-            }
-            
-            .stat-value {
-                font-size: 1.4rem;
-            }
-            
-            .stat-label {
-                font-size: 0.7rem;
-            }
-            
-            .nav {
+            /* Day view - flex column to fill height */
+            .day-view {
+                display: flex;
                 flex-direction: column;
-                align-items: stretch;
-                gap: 10px;
+                min-height: calc(100vh - 70px);
+            }
+            
+            .day-view.hidden {
+                display: none;
+            }
+            
+            /* Sticky header with nav */
+            .nav {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background: #1a1a2e;
+                padding: 12px 15px;
+                margin: 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                flex-direction: row;
+                gap: 0;
             }
             
             .nav-left {
-                flex-direction: column;
+                flex-direction: row;
+                justify-content: space-between;
                 align-items: center;
-                gap: 10px;
+                width: 100%;
             }
             
             .nav-links {
-                width: 100%;
-                justify-content: center;
+                display: none;
             }
             
-            .nav-link {
-                padding: 10px 14px;
-                font-size: 0.85rem;
-            }
-            
-            .date-nav {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            
-            .date-nav button {
-                padding: 10px 14px;
+            .logo {
                 font-size: 1.1rem;
             }
             
-            .date-picker {
-                padding: 10px;
-            }
-            
-            .main-content {
-                gap: 15px;
-                margin-top: 15px;
-            }
-            
-            .grid-section {
-                padding: 15px;
-            }
-            
-            .sidebar {
-                gap: 15px;
-            }
-            
-            .panel {
-                padding: 15px;
-            }
-            
-            .panel h3 {
-                font-size: 0.9rem;
-            }
-            
-            .instructions {
-                font-size: 0.75rem;
-                padding: 8px 10px;
-            }
-            
-            .form-group label {
-                font-size: 0.7rem;
-            }
-            
-            input[type="text"], textarea {
-                padding: 12px;
-                font-size: 16px; /* Prevents zoom on iOS */
-            }
-            
-            .category-picker {
+            .date-nav {
                 gap: 8px;
             }
             
-            .category-option {
+            .date-nav button {
                 padding: 8px 12px;
-                font-size: 0.8rem;
-            }
-            
-            .add-category-btn {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-            }
-            
-            button {
-                padding: 12px 18px;
-                font-size: 0.9rem;
-            }
-            
-            .btn-row {
-                flex-direction: column;
-            }
-            
-            .btn-row button {
-                width: 100%;
-            }
-            
-            .time-block-card {
-                padding: 12px;
-            }
-            
-            .time-block-card-name {
-                font-size: 0.9rem;
-            }
-            
-            .icon-btn {
-                padding: 8px;
                 font-size: 1rem;
+                min-width: 40px;
             }
             
-            .plan-item {
-                padding: 12px;
+            .date-picker {
+                padding: 8px 10px;
+                font-size: 14px;
+                max-width: 130px;
             }
             
-            .plan-checkbox {
-                width: 22px;
-                height: 22px;
+            .today-indicator {
+                display: none !important;
             }
             
-            .plan-text {
-                font-size: 0.9rem;
+            /* Bottom Navigation */
+            .mobile-bottom-nav {
+                display: flex !important;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: #1a1a2e;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                padding: 6px 0;
+                padding-bottom: max(6px, env(safe-area-inset-bottom));
+                z-index: 1000;
+                justify-content: space-around;
             }
             
-            .add-plan-row {
+            .mobile-nav-item {
+                display: flex;
                 flex-direction: column;
+                align-items: center;
+                gap: 2px;
+                padding: 6px 20px;
+                color: #8892b0;
+                font-size: 0.65rem;
+                cursor: pointer;
+                border: none;
+                background: none;
             }
             
-            .add-plan-row button {
-                width: 100%;
+            .mobile-nav-item.active {
+                color: #64ffda;
             }
             
+            .mobile-nav-item span:first-child {
+                font-size: 1.2rem;
+            }
+            
+            /* Header - compact with breathing room */
+            header {
+                padding: 16px 16px 12px 16px;
+                margin-bottom: 0;
+            }
+            
+            h1 {
+                font-size: 1.2rem;
+                margin-bottom: 0;
+            }
+            
+            .subtitle {
+                display: none;
+            }
+            
+            /* Stats - inline compact row with spacing */
+            .stats {
+                display: flex;
+                justify-content: space-around;
+                gap: 10px;
+                margin-top: 14px;
+                padding: 12px;
+                background: rgba(255,255,255,0.03);
+                border-radius: 10px;
+            }
+            
+            .stat {
+                text-align: center;
+                flex: 1;
+            }
+            
+            .stat-value {
+                font-size: 1.1rem;
+                font-weight: 600;
+            }
+            
+            .stat-label {
+                font-size: 0.6rem;
+                letter-spacing: 0;
+                margin-top: 2px;
+            }
+            
+            /* Progress bar - thinner */
             .progress-bar {
-                height: 20px;
+                height: 6px;
+                margin: 14px 0 6px 0;
+                border-radius: 3px;
             }
             
             .progress-text {
-                font-size: 0.7rem;
+                position: relative;
+                transform: none;
+                left: auto;
+                top: auto;
+                font-size: 0.65rem;
+                text-align: center;
+                margin-top: 4px;
+                color: #8892b0;
             }
             
+            /* Main content - single column, full height */
+            .main-content {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                margin-top: 0;
+                padding: 0 16px 16px 16px;
+                flex: 1;
+                min-height: 0;
+            }
+            
+            /* Grid section */
+            .grid-section {
+                padding: 14px;
+                background: rgba(255,255,255,0.02);
+                border: 1px solid rgba(255,255,255,0.05);
+                border-radius: 12px;
+            }
+            
+            .section-header {
+                margin-bottom: 12px;
+            }
+            
+            .section-title {
+                font-size: 0.9rem;
+            }
+            
+            .selection-info {
+                font-size: 0.75rem;
+                margin-top: 4px;
+            }
+            
+            /* Hide the complex grid on mobile */
             .legend {
-                gap: 10px;
-                justify-content: center;
+                display: none;
             }
             
-            .legend-item {
+            .day-grid {
+                display: none !important;
+            }
+            
+            /* Mobile time picker - shown only on mobile */
+            .mobile-time-picker {
+                display: flex !important;
+                flex-direction: column;
+                gap: 12px;
+                padding: 16px;
+                background: rgba(0,0,0,0.2);
+                border-radius: 10px;
+            }
+            
+            /* Visual day timeline - compact bar */
+            .mobile-day-timeline {
+                display: block !important;
+                margin-bottom: 16px;
+            }
+            
+            .timeline-header {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 8px;
                 font-size: 0.7rem;
+                color: #8892b0;
             }
             
-            .legend-color {
-                width: 12px;
-                height: 12px;
+            .timeline-bar {
+                height: 40px;
+                background: rgba(255,255,255,0.05);
+                border-radius: 8px;
+                position: relative;
+                overflow: hidden;
             }
             
-            .time-blocks-visual {
+            .timeline-block {
+                position: absolute;
+                top: 4px;
+                bottom: 4px;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.6rem;
+                color: rgba(0,0,0,0.7);
+                font-weight: 600;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                padding: 0 4px;
+                cursor: pointer;
+                transition: transform 0.1s;
+            }
+            
+            .timeline-block:active {
+                transform: scaleY(1.1);
+            }
+            
+            .timeline-now {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                background: #64ffda;
+                z-index: 10;
+            }
+            
+            .timeline-hours {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 4px;
+                font-size: 0.6rem;
+                color: #5a6a8a;
+            }
+            
+            .time-picker-row {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            
+            .time-picker-label {
+                font-size: 0.85rem;
+                color: #8892b0;
+                min-width: 50px;
+            }
+            
+            .time-picker-input {
+                flex: 1;
+                padding: 14px;
+                background: rgba(255,255,255,0.05);
+                border: 1px solid rgba(255,255,255,0.15);
+                border-radius: 8px;
+                color: #fff;
+                font-size: 16px;
+                font-family: inherit;
+            }
+            
+            .time-picker-input:focus {
+                outline: none;
+                border-color: #64ffda;
+            }
+            
+            .time-range-preview {
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 gap: 8px;
+                padding: 12px;
+                background: rgba(100, 255, 218, 0.1);
+                border-radius: 8px;
+                font-size: 0.9rem;
+                color: #64ffda;
+            }
+            
+            .time-range-preview.empty {
+                background: rgba(255,255,255,0.03);
+                color: #5a6a8a;
+            }
+            
+            /* Quick time buttons */
+            .quick-times {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-top: 4px;
+            }
+            
+            .quick-time-btn {
+                padding: 10px 14px;
+                background: rgba(255,255,255,0.05);
+                border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 6px;
+                color: #8892b0;
+                font-size: 0.8rem;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+            
+            .quick-time-btn:active {
+                background: rgba(100, 255, 218, 0.15);
+                border-color: #64ffda;
+                color: #64ffda;
+            }
+            
+            /* Time blocks visual - hide on mobile, use Blocks tab instead */
+            .time-blocks-visual {
+                display: none;
             }
             
             .time-block-row {
-                padding: 10px;
+                padding: 12px 14px;
+                min-width: auto;
+                width: 100%;
+            }
+            
+            .time-block-name {
+                font-size: 0.85rem;
+            }
+            
+            .time-block-time {
+                font-size: 0.7rem;
+            }
+            
+            .time-block-duration {
+                font-size: 0.7rem;
+            }
             }
             
             .time-block-name {
@@ -1221,75 +1443,327 @@
                 font-size: 0.65rem;
             }
             
-            /* Dashboard mobile */
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
+            /* Sidebar - tabs on mobile */
+            .sidebar {
+                gap: 0;
+                margin-top: 0;
             }
             
-            .dashboard-card {
-                padding: 15px;
+            /* Mobile tabs */
+            .mobile-tabs {
+                display: flex !important;
+                background: rgba(255,255,255,0.03);
+                border-radius: 10px;
+                padding: 5px;
+                margin-bottom: 14px;
+                gap: 4px;
             }
             
-            .date-range-picker {
+            .mobile-tab {
+                flex: 1;
+                padding: 12px 8px;
+                background: transparent;
+                border: none;
+                color: #8892b0;
+                font-size: 0.75rem;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+            
+            .mobile-tab.active {
+                background: rgba(100, 255, 218, 0.15);
+                color: #64ffda;
+            }
+            
+            /* Panels - only show active one, take full height */
+            .panel {
+                display: none !important;
+                padding: 16px;
+                background: rgba(255,255,255,0.02);
+                border-radius: 12px;
+                border: 1px solid rgba(255,255,255,0.05);
+                flex: 1;
+                min-height: 0;
+            }
+            
+            .panel.mobile-active {
+                display: flex !important;
                 flex-direction: column;
-                align-items: stretch;
+                flex: 1;
+                overflow: hidden;
             }
             
-            .date-range-picker label {
-                text-align: center;
+            .sidebar {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                min-height: 0;
+                overflow: hidden;
             }
             
-            .date-range-picker input {
-                width: 100%;
+            /* Make content inside panels fill space */
+            #planning-panel .plan-list,
+            #blocks-panel .time-blocks-list {
+                flex: 1;
+                overflow-y: auto;
+                min-height: 0;
             }
             
-            .date-range-picker button {
-                width: 100%;
+            .panel h3 {
+                font-size: 0.95rem;
+                margin-bottom: 14px;
+                padding: 0;
             }
             
-            .category-stat-row {
+            .instructions {
+                display: none;
+            }
+            
+            /* Form elements */
+            .form-group {
+                margin-bottom: 14px;
+            }
+            
+            .form-group label {
+                font-size: 0.75rem;
+                margin-bottom: 6px;
+            }
+            
+            input[type="text"], textarea {
+                padding: 14px;
+                font-size: 16px;
+                border-radius: 8px;
+            }
+            
+            textarea {
+                min-height: 60px;
+            }
+            
+            .selected-range {
+                padding: 12px 14px;
+                font-size: 0.85rem;
+                margin-bottom: 14px;
+                border-radius: 8px;
+            }
+            
+            /* Category picker */
+            .category-picker {
+                gap: 8px;
                 flex-wrap: wrap;
             }
             
-            .category-stat-name {
-                min-width: 80px;
+            .category-option {
+                padding: 10px 12px;
                 font-size: 0.8rem;
             }
             
-            .category-stat-value {
-                font-size: 0.75rem;
-                min-width: 50px;
+            .add-category-btn {
+                padding: 10px 12px;
+                font-size: 0.8rem;
             }
             
-            /* History mobile */
-            .history-grid {
-                grid-template-columns: 1fr;
+            /* Buttons */
+            button {
+                padding: 14px 18px;
+                font-size: 0.95rem;
+                border-radius: 8px;
             }
             
-            .history-card {
-                padding: 15px;
+            .btn-row {
+                flex-direction: row;
+                gap: 10px;
+                margin-top: 4px;
             }
             
-            /* Modal mobile */
-            .modal-content {
-                margin: 15px;
-                padding: 20px;
-                min-width: auto;
-                width: calc(100% - 30px);
-                max-width: 350px;
+            .btn-row button {
+                flex: 1;
             }
             
+            /* Time block cards */
+            .time-blocks-list {
+                flex: 1;
+                overflow-y: auto;
+                min-height: 0;
+                max-height: none !important;
+            }
+            
+            .time-block-card {
+                padding: 12px;
+                margin-bottom: 8px;
+            }
+            
+            .time-block-card-name {
+                font-size: 0.9rem;
+            }
+            
+            .icon-btn {
+                padding: 10px;
+                font-size: 1rem;
+                min-width: 40px;
+                min-height: 40px;
+            }
+            
+            /* Plan items */
+            .plan-list {
+                flex: 1;
+                overflow-y: auto;
+                min-height: 0;
+            }
+            
+            .plan-item {
+                padding: 12px;
+                margin-bottom: 6px;
+            }
+            
+            .plan-checkbox {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .plan-text {
+                font-size: 0.9rem;
+            }
+            
+            .add-plan-row {
+                flex-direction: row;
+                gap: 10px;
+                margin-top: 12px;
+            }
+            
+            .add-plan-row input {
+                flex: 1;
+                min-width: 0;
+            }
+            
+            .add-plan-row button {
+                flex: 0;
+                padding: 14px 16px;
+            }
+            
+            .plan-stats {
+                margin-top: 12px;
+                padding-top: 12px;
+            }
+            
+            /* Color picker */
             .color-picker {
                 gap: 8px;
             }
             
             .color-option {
-                width: 28px;
-                height: 28px;
+                width: 32px;
+                height: 32px;
             }
             
-            /* Hide tooltip on mobile */
+            /* Dashboard */
+            .dashboard-view header,
+            .history-view header {
+                padding: 16px;
+            }
+            
+            .dashboard-view h1,
+            .history-view h1 {
+                font-size: 1.3rem;
+            }
+            
+            .dashboard-grid {
+                padding: 0 16px 16px 16px;
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .dashboard-card {
+                padding: 16px;
+            }
+            
+            .dashboard-card h3 {
+                font-size: 0.95rem;
+                margin-bottom: 12px;
+            }
+            
+            .dashboard-quick-filters {
+                padding: 0 15px;
+                gap: 6px;
+                margin-bottom: 12px;
+            }
+            
+            .quick-filter-btn {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+            
+            .date-range-picker {
+                display: grid;
+                grid-template-columns: auto 1fr auto 1fr auto;
+                gap: 8px;
+                align-items: center;
+                padding: 0 15px;
+                margin-bottom: 15px;
+            }
+            
+            .date-range-picker label {
+                font-size: 0.75rem;
+            }
+            
+            .date-range-picker input {
+                padding: 10px;
+                font-size: 14px;
+            }
+            
+            .date-range-picker button {
+                grid-column: span 5;
+                padding: 10px;
+            }
+            
+            .category-stat-row {
+                padding: 6px 0;
+            }
+            
+            .category-stat-name {
+                font-size: 0.8rem;
+            }
+            
+            .category-stat-value {
+                font-size: 0.75rem;
+            }
+            
+            /* History */
+            .history-grid {
+                padding: 0 15px;
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .history-card {
+                padding: 12px;
+            }
+            
+            .history-card-date {
+                font-size: 0.9rem;
+            }
+            
+            /* Modal */
+            .modal-content {
+                margin: 20px;
+                padding: 15px;
+                width: calc(100% - 40px);
+            }
+            
+            /* Empty states */
+            .empty-state {
+                padding: 15px;
+            }
+            
+            .empty-state-icon {
+                font-size: 1.5rem;
+            }
+            
+            .empty-state p {
+                font-size: 0.8rem;
+            }
+            
+            /* Tooltip */
             .tooltip {
                 display: none !important;
             }
@@ -1297,37 +1771,53 @@
         
         /* Extra small screens */
         @media (max-width: 400px) {
-            .day-grid {
-                grid-template-columns: repeat(8, 1fr);
+            .hour-column {
+                width: 24px;
             }
             
-            .stats {
-                flex-direction: column;
-                gap: 10px;
+            .block {
+                width: 24px;
+                height: 7px;
             }
             
-            .stat {
-                flex-direction: row;
-                justify-content: space-between;
-                width: 100%;
-                padding: 8px 0;
-                border-bottom: 1px solid rgba(255,255,255,0.05);
+            .date-range-picker {
+                grid-template-columns: 1fr 1fr;
             }
             
-            .stat-value {
-                font-size: 1.2rem;
+            .date-range-picker label {
+                display: none;
+            }
+            
+            .date-range-picker button {
+                grid-column: span 2;
             }
         }
         
-        /* Touch-friendly improvements */
+        /* Touch devices */
         @media (pointer: coarse) {
-            .block {
-                min-height: 8px;
-            }
-            
             .block:active {
-                transform: scale(1.3);
+                transform: scale(1.15);
             }
+        }
+        
+        /* Mobile tabs - hidden on desktop */
+        .mobile-tabs {
+            display: none;
+        }
+        
+        /* Mobile time picker - hidden on desktop */
+        .mobile-time-picker {
+            display: none;
+        }
+        
+        /* Mobile day timeline - hidden on desktop */
+        .mobile-day-timeline {
+            display: none;
+        }
+        
+        /* Bottom nav - hidden by default */
+        .mobile-bottom-nav {
+            display: none;
         }
     </style>
 </head>
@@ -1410,11 +1900,57 @@
                     
                     <div class="day-grid" id="day-grid"></div>
                     
+                    <!-- Mobile Day Timeline (hidden on desktop) -->
+                    <div class="mobile-day-timeline" id="mobile-day-timeline">
+                        <div class="timeline-header">
+                            <span>Your Day</span>
+                            <span id="timeline-summary">Tap a block to edit</span>
+                        </div>
+                        <div class="timeline-bar" id="timeline-bar">
+                            <div class="timeline-now" id="timeline-now"></div>
+                        </div>
+                        <div class="timeline-hours">
+                            <span>12a</span>
+                            <span>6a</span>
+                            <span>12p</span>
+                            <span>6p</span>
+                            <span>12a</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile Time Picker (hidden on desktop) -->
+                    <div class="mobile-time-picker" id="mobile-time-picker">
+                        <div class="time-picker-row">
+                            <span class="time-picker-label">From</span>
+                            <input type="time" class="time-picker-input" id="mobile-start-time" step="300">
+                        </div>
+                        <div class="time-picker-row">
+                            <span class="time-picker-label">To</span>
+                            <input type="time" class="time-picker-input" id="mobile-end-time" step="300">
+                        </div>
+                        <div class="time-range-preview empty" id="mobile-time-preview">
+                            Select a time range above
+                        </div>
+                        <div class="quick-times">
+                            <button class="quick-time-btn" data-duration="30">30 min</button>
+                            <button class="quick-time-btn" data-duration="60">1 hour</button>
+                            <button class="quick-time-btn" data-duration="90">1.5 hrs</button>
+                            <button class="quick-time-btn" data-duration="120">2 hours</button>
+                        </div>
+                    </div>
+                    
                     <div class="time-blocks-visual" id="time-blocks-visual"></div>
                 </div>
                 
                 <div class="sidebar">
-                    <div class="panel" id="create-panel">
+                    <!-- Mobile tabs -->
+                    <div class="mobile-tabs" id="mobile-tabs">
+                        <button class="mobile-tab active" data-panel="create-panel">➕ Create</button>
+                        <button class="mobile-tab" data-panel="planning-panel">📝 Plan</button>
+                        <button class="mobile-tab" data-panel="blocks-panel">📋 Blocks</button>
+                    </div>
+                    
+                    <div class="panel mobile-active" id="create-panel">
                         <h3>➕ Create Time Block</h3>
                         <div class="instructions">
                             <strong>Step 1:</strong> Drag on the grid to select a time range<br>
@@ -1447,22 +1983,22 @@
                     
                     <div class="panel" id="planning-panel">
                         <h3>📝 Day Plan</h3>
-                        <div class="plan-list" id="plan-list">
-                            <div class="empty-state" style="padding: 15px;">
-                                <p style="font-size: 0.85rem;">Plan your day by adding tasks below</p>
-                            </div>
-                        </div>
                         <div class="add-plan-row">
-                            <input type="text" class="add-plan-input" id="plan-input" placeholder="What do you want to accomplish today?">
+                            <input type="text" class="add-plan-input" id="plan-input" placeholder="Add a task...">
                             <button class="btn-primary" id="add-plan-btn" style="flex: 0; padding: 9px 14px;">➕</button>
                         </div>
                         <div class="plan-stats" id="plan-stats-container" style="display: none;">
                             <span class="plan-stat">Completed: <span class="plan-stat-value" id="plan-completed">0</span></span>
                             <span class="plan-stat">Remaining: <span class="plan-stat-value" id="plan-remaining">0</span></span>
                         </div>
+                        <div class="plan-list" id="plan-list">
+                            <div class="empty-state" style="padding: 15px;">
+                                <p style="font-size: 0.85rem;">Plan your day by adding tasks above</p>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="panel" style="flex: 1; display: flex; flex-direction: column; min-height: 250px;">
+                    <div class="panel" id="blocks-panel">
                         <h3>📋 Time Blocks</h3>
                         <div class="time-blocks-list" id="time-blocks-list">
                             <div class="empty-state">
@@ -1497,12 +2033,20 @@
                 <p class="subtitle">Analyze how you spend your time</p>
             </header>
             
+            <div class="dashboard-quick-filters">
+                <button class="quick-filter-btn active" onclick="setDashboardRange('today')">Today</button>
+                <button class="quick-filter-btn" onclick="setDashboardRange('week')">This Week</button>
+                <button class="quick-filter-btn" onclick="setDashboardRange('month')">This Month</button>
+                <button class="quick-filter-btn" onclick="setDashboardRange('30days')">Last 30 Days</button>
+                <button class="quick-filter-btn" onclick="setDashboardRange('all')">All Time</button>
+            </div>
+            
             <div class="date-range-picker">
                 <label>From:</label>
                 <input type="date" class="date-picker" id="dashboard-start-date">
                 <label>To:</label>
                 <input type="date" class="date-picker" id="dashboard-end-date">
-                <button class="btn-secondary" onclick="refreshDashboard()">Refresh</button>
+                <button class="btn-secondary" onclick="refreshDashboard()">Apply</button>
             </div>
             
             <div class="dashboard-grid" id="dashboard-grid">
@@ -1568,6 +2112,22 @@
     </div>
     
     <div class="tooltip" id="tooltip"></div>
+    
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+        <button class="mobile-nav-item active" id="mobile-nav-today" onclick="goToToday()">
+            <span>📅</span>
+            <span>Today</span>
+        </button>
+        <button class="mobile-nav-item" id="mobile-nav-history" onclick="showHistory()">
+            <span>📚</span>
+            <span>History</span>
+        </button>
+        <button class="mobile-nav-item" id="mobile-nav-dashboard" onclick="showDashboard()">
+            <span>📊</span>
+            <span>Dashboard</span>
+        </button>
+    </nav>
     
     <script>
         const BLOCKS_PER_HOUR = 12;
@@ -1679,6 +2239,114 @@
         }
         
         // Navigation
+        function updateMobileNav(active) {
+            document.querySelectorAll('.mobile-nav-item').forEach(item => item.classList.remove('active'));
+            const mobileNav = document.getElementById(`mobile-nav-${active}`);
+            if (mobileNav) mobileNav.classList.add('active');
+        }
+        
+        // Mobile tabs
+        function initMobileTabs() {
+            const tabs = document.querySelectorAll('.mobile-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const panelId = tab.dataset.panel;
+                    
+                    // Update tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    // Update panels
+                    document.querySelectorAll('.sidebar .panel').forEach(p => {
+                        p.classList.remove('mobile-active');
+                    });
+                    const panel = document.getElementById(panelId);
+                    if (panel) panel.classList.add('mobile-active');
+                });
+            });
+        }
+        
+        // Mobile time picker
+        function initMobileTimePicker() {
+            const startInput = document.getElementById('mobile-start-time');
+            const endInput = document.getElementById('mobile-end-time');
+            const preview = document.getElementById('mobile-time-preview');
+            const quickBtns = document.querySelectorAll('.quick-time-btn');
+            
+            if (!startInput || !endInput) return;
+            
+            function updateFromTimePicker() {
+                const startTime = startInput.value;
+                const endTime = endInput.value;
+                
+                if (!startTime || !endTime) {
+                    preview.textContent = 'Select a time range above';
+                    preview.classList.add('empty');
+                    selectedBlocks.clear();
+                    updateSelectionUI();
+                    return;
+                }
+                
+                // Convert times to block indices
+                const [startHour, startMin] = startTime.split(':').map(Number);
+                const [endHour, endMin] = endTime.split(':').map(Number);
+                
+                const startBlock = startHour * 12 + Math.floor(startMin / 5);
+                let endBlock = endHour * 12 + Math.floor(endMin / 5);
+                
+                // If end time is less than start, assume they mean same time (1 block)
+                if (endBlock <= startBlock) {
+                    endBlock = startBlock + 1;
+                }
+                
+                // Select the blocks
+                selectedBlocks.clear();
+                for (let i = startBlock; i < endBlock; i++) {
+                    selectedBlocks.add(i);
+                }
+                
+                // Update preview
+                const duration = (endBlock - startBlock) * 5;
+                const hours = Math.floor(duration / 60);
+                const mins = duration % 60;
+                const durationStr = hours > 0 ? `${hours}h ${mins}m` : `${mins} min`;
+                preview.textContent = `${formatTime(startBlock)} → ${formatTime(endBlock)} (${durationStr})`;
+                preview.classList.remove('empty');
+                
+                updateSelectionUI();
+            }
+            
+            startInput.addEventListener('change', updateFromTimePicker);
+            endInput.addEventListener('change', updateFromTimePicker);
+            
+            // Quick time buttons - set duration from current time
+            quickBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const duration = parseInt(btn.dataset.duration);
+                    const now = new Date();
+                    const currentHour = now.getHours();
+                    const currentMin = Math.floor(now.getMinutes() / 5) * 5;
+                    
+                    startInput.value = `${String(currentHour).padStart(2, '0')}:${String(currentMin).padStart(2, '0')}`;
+                    
+                    const endTotalMin = currentHour * 60 + currentMin + duration;
+                    const endHour = Math.floor(endTotalMin / 60) % 24;
+                    const endMin = endTotalMin % 60;
+                    endInput.value = `${String(endHour).padStart(2, '0')}:${String(endMin).padStart(2, '0')}`;
+                    
+                    updateFromTimePicker();
+                });
+            });
+        }
+        
+        function formatTime(blockIndex) {
+            const hours = Math.floor(blockIndex / 12);
+            const mins = (blockIndex % 12) * 5;
+            const h = hours % 12 || 12;
+            const ampm = hours < 12 ? 'AM' : 'PM';
+            return `${h}:${String(mins).padStart(2, '0')} ${ampm}`;
+        }
+        
         function goToDate(date) {
             currentDate = new Date(date);
             document.getElementById('date-picker').value = formatDateForAPI(currentDate);
@@ -1688,8 +2356,45 @@
             
             // Update UI
             document.getElementById('today-indicator').style.display = isToday(currentDate) ? 'inline-block' : 'none';
-            document.getElementById('create-panel').style.display = isReadOnly ? 'none' : 'block';
-            document.getElementById('planning-panel').style.display = isReadOnly ? 'none' : 'block';
+            
+            // Handle mobile tabs visibility for read-only
+            const createTab = document.querySelector('.mobile-tab[data-panel="create-panel"]');
+            const planTab = document.querySelector('.mobile-tab[data-panel="planning-panel"]');
+            const mobileTimePicker = document.getElementById('mobile-time-picker');
+            const mobileTimeline = document.querySelector('.mobile-day-timeline');
+            const mobileTabs = document.getElementById('mobile-tabs');
+            const dayGrid = document.querySelector('.day-grid');
+            const gridSection = document.querySelector('.grid-section');
+            const mainContent = document.querySelector('.main-content');
+            if (isReadOnly) {
+                document.getElementById('create-panel').style.display = 'none';
+                if (createTab) createTab.style.display = 'none';
+                if (mobileTimePicker) mobileTimePicker.style.display = 'none';
+                if (mobileTimeline) mobileTimeline.style.display = 'none';
+                if (dayGrid) dayGrid.style.display = 'none';
+                if (gridSection) gridSection.style.display = 'none';
+                if (mainContent) mainContent.classList.add('read-only-layout');
+                // Show blocks panel by default on historical days
+                document.getElementById('blocks-panel').classList.add('mobile-active');
+                document.getElementById('planning-panel').classList.remove('mobile-active');
+                // Update tab active states
+                if (planTab) {
+                    planTab.classList.remove('active');
+                }
+                const blocksTab = document.querySelector('.mobile-tab[data-panel="blocks-panel"]');
+                if (blocksTab) blocksTab.classList.add('active');
+            } else {
+                document.getElementById('create-panel').style.display = '';
+                document.getElementById('planning-panel').style.display = '';
+                if (createTab) createTab.style.display = '';
+                if (planTab) planTab.style.display = '';
+                if (mobileTimePicker) mobileTimePicker.style.display = '';
+                if (mobileTimeline) mobileTimeline.style.display = '';
+                if (mobileTabs) mobileTabs.style.display = '';
+                if (dayGrid) dayGrid.style.display = '';
+                if (gridSection) gridSection.style.display = '';
+                if (mainContent) mainContent.classList.remove('read-only-layout');
+            }
             document.getElementById('progress-container').style.display = isToday(currentDate) ? 'block' : 'none';
             
             // Show day view
@@ -1699,6 +2404,7 @@
             document.getElementById('nav-today').classList.add('active');
             document.getElementById('nav-history').classList.remove('active');
             document.getElementById('nav-dashboard').classList.remove('active');
+            updateMobileNav('today');
             
             loadAndRender();
         }
@@ -1728,6 +2434,7 @@
             document.getElementById('nav-today').classList.remove('active');
             document.getElementById('nav-history').classList.add('active');
             document.getElementById('nav-dashboard').classList.remove('active');
+            updateMobileNav('history');
             
             const days = await loadHistory();
             renderHistory(days);
@@ -1892,7 +2599,7 @@
             container.innerHTML = dayPlan.map((item, index) => `
                 <div class="plan-item ${item.completed ? 'completed' : ''}" data-index="${index}">
                     <div class="plan-checkbox ${item.completed ? 'checked' : ''}" onclick="togglePlanItem(${index})"></div>
-                    <span class="plan-text">${escapeHtml(item.text)}</span>
+                    <span class="plan-text" ${!isReadOnly ? `onclick="editPlanItem(${index})"` : ''}>${escapeHtml(item.text)}</span>
                     ${!isReadOnly ? `<button class="plan-delete" onclick="deletePlanItem(${index})">✕</button>` : ''}
                 </div>
             `).join('');
@@ -1931,6 +2638,41 @@
             debouncedSave();
         }
         
+        function editPlanItem(index) {
+            if (isReadOnly) return;
+            const planItem = document.querySelector(`.plan-item[data-index="${index}"]`);
+            const textSpan = planItem.querySelector('.plan-text');
+            const currentText = dayPlan[index].text;
+            
+            // Replace span with input
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'plan-edit-input';
+            input.value = currentText;
+            textSpan.replaceWith(input);
+            input.focus();
+            input.select();
+            
+            function saveEdit() {
+                const newText = input.value.trim();
+                if (newText && newText !== currentText) {
+                    dayPlan[index].text = newText;
+                    debouncedSave();
+                }
+                renderPlanList();
+            }
+            
+            input.addEventListener('blur', saveEdit);
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    input.blur();
+                } else if (e.key === 'Escape') {
+                    renderPlanList(); // Cancel edit
+                }
+            });
+        }
+        
         // Dashboard functions
         async function showDashboard() {
             document.getElementById('day-view').classList.add('hidden');
@@ -1939,16 +2681,52 @@
             document.getElementById('nav-today').classList.remove('active');
             document.getElementById('nav-history').classList.remove('active');
             document.getElementById('nav-dashboard').classList.add('active');
+            updateMobileNav('dashboard');
             
-            // Set default date range (last 7 days)
+            // Set default date range (today)
+            const today = new Date();
+            document.getElementById('dashboard-start-date').value = formatDateForAPI(today);
+            document.getElementById('dashboard-end-date').value = formatDateForAPI(today);
+            
+            // Set Today button as active
+            document.querySelectorAll('.quick-filter-btn').forEach(btn => btn.classList.remove('active'));
+            const todayBtn = document.querySelector('.quick-filter-btn');
+            if (todayBtn) todayBtn.classList.add('active');
+            
+            await refreshDashboard();
+        }
+        
+        function setDashboardRange(range) {
             const endDate = new Date();
-            const startDate = new Date();
-            startDate.setDate(startDate.getDate() - 7);
+            let startDate = new Date();
+            
+            // Update active button
+            document.querySelectorAll('.quick-filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            switch(range) {
+                case 'today':
+                    startDate = new Date();
+                    break;
+                case 'week':
+                    // Start of current week (Sunday)
+                    startDate.setDate(endDate.getDate() - endDate.getDay());
+                    break;
+                case 'month':
+                    // Start of current month
+                    startDate = new Date(endDate.getFullYear(), endDate.getMonth(), 1);
+                    break;
+                case '30days':
+                    startDate.setDate(endDate.getDate() - 30);
+                    break;
+                case 'all':
+                    startDate = new Date('2020-01-01');
+                    break;
+            }
             
             document.getElementById('dashboard-start-date').value = formatDateForAPI(startDate);
             document.getElementById('dashboard-end-date').value = formatDateForAPI(endDate);
-            
-            await refreshDashboard();
+            refreshDashboard();
         }
         
         async function refreshDashboard() {
@@ -2066,6 +2844,40 @@
             renderTimeBlocksList();
             renderPlanList();
             updateStats();
+            setSmartTimeDefaults();
+        }
+        
+        // Set smart defaults for mobile time picker
+        function setSmartTimeDefaults() {
+            const startInput = document.getElementById('mobile-start-time');
+            const endInput = document.getElementById('mobile-end-time');
+            
+            if (!startInput || !endInput) return;
+            
+            // Find the end of the last recorded block
+            let lastEndBlock = 0;
+            if (timeBlocks.length > 0) {
+                const sortedBlocks = [...timeBlocks].sort((a, b) => b.endBlock - a.endBlock);
+                lastEndBlock = sortedBlocks[0].endBlock + 1; // +1 because endBlock is inclusive
+            }
+            
+            // Convert last end block to time
+            const lastEndHour = Math.floor(lastEndBlock / 12);
+            const lastEndMin = (lastEndBlock % 12) * 5;
+            
+            // Get current time (rounded to 5 min)
+            const now = new Date();
+            const currentHour = now.getHours();
+            const currentMin = Math.floor(now.getMinutes() / 5) * 5;
+            
+            // Set "From" to end of last block (or 00:00 if no blocks)
+            startInput.value = `${String(lastEndHour).padStart(2, '0')}:${String(lastEndMin).padStart(2, '0')}`;
+            
+            // Set "To" to current time
+            endInput.value = `${String(currentHour).padStart(2, '0')}:${String(currentMin).padStart(2, '0')}`;
+            
+            // Trigger change to update preview
+            startInput.dispatchEvent(new Event('change'));
         }
         
         // Time formatting
@@ -2195,34 +3007,105 @@
             
             if (timeBlocks.length === 0) {
                 container.innerHTML = '';
-                return;
+            } else {
+                const sorted = [...timeBlocks].sort((a, b) => a.startBlock - b.startBlock);
+                
+                container.innerHTML = sorted.map(tb => {
+                    const start = blockToTime(tb.startBlock);
+                    const end = blockToTime(tb.endBlock + 1);
+                    const duration = (tb.endBlock - tb.startBlock + 1) * 5;
+                    
+                    return `
+                        <div class="time-block-row" style="border-color: ${tb.color}" data-id="${tb.id}">
+                            <div class="time-block-color" style="background: ${tb.color}"></div>
+                            <div class="time-block-info">
+                                <div class="time-block-name">${escapeHtml(tb.name)}</div>
+                                <div class="time-block-time">${formatTime(start.hour, start.minute)} - ${formatTime(end.hour, end.minute)}</div>
+                            </div>
+                            <div class="time-block-duration">${formatDuration(duration)}</div>
+                        </div>
+                    `;
+                }).join('');
+                
+                container.querySelectorAll('.time-block-row').forEach(row => {
+                    row.addEventListener('click', () => {
+                        const id = parseInt(row.dataset.id);
+                        scrollToBlock(id);
+                    });
+                });
             }
             
-            const sorted = [...timeBlocks].sort((a, b) => a.startBlock - b.startBlock);
+            // Also render mobile timeline
+            renderMobileTimeline();
+        }
+        
+        function renderMobileTimeline() {
+            const bar = document.getElementById('timeline-bar');
+            const summary = document.getElementById('timeline-summary');
+            const nowIndicator = document.getElementById('timeline-now');
             
-            container.innerHTML = sorted.map(tb => {
-                const start = blockToTime(tb.startBlock);
-                const end = blockToTime(tb.endBlock + 1);
+            if (!bar) return;
+            
+            // Clear existing blocks (keep now indicator)
+            bar.querySelectorAll('.timeline-block').forEach(b => b.remove());
+            
+            // Update now indicator
+            if (isToday(currentDate)) {
+                const now = new Date();
+                const nowPercent = ((now.getHours() * 60 + now.getMinutes()) / (24 * 60)) * 100;
+                nowIndicator.style.left = `${nowPercent}%`;
+                nowIndicator.style.display = 'block';
+            } else {
+                nowIndicator.style.display = 'none';
+            }
+            
+            // Calculate total logged time
+            let totalMinutes = 0;
+            
+            // Render each time block
+            timeBlocks.forEach(tb => {
+                const startPercent = (tb.startBlock / 288) * 100;
+                const widthPercent = ((tb.endBlock - tb.startBlock + 1) / 288) * 100;
                 const duration = (tb.endBlock - tb.startBlock + 1) * 5;
+                totalMinutes += duration;
                 
-                return `
-                    <div class="time-block-row" style="border-color: ${tb.color}" data-id="${tb.id}">
-                        <div class="time-block-color" style="background: ${tb.color}"></div>
-                        <div class="time-block-info">
-                            <div class="time-block-name">${escapeHtml(tb.name)}</div>
-                            <div class="time-block-time">${formatTime(start.hour, start.minute)} - ${formatTime(end.hour, end.minute)}</div>
-                        </div>
-                        <div class="time-block-duration">${formatDuration(duration)}</div>
-                    </div>
-                `;
-            }).join('');
-            
-            container.querySelectorAll('.time-block-row').forEach(row => {
-                row.addEventListener('click', () => {
-                    const id = parseInt(row.dataset.id);
-                    scrollToBlock(id);
+                const block = document.createElement('div');
+                block.className = 'timeline-block';
+                block.style.left = `${startPercent}%`;
+                block.style.width = `${widthPercent}%`;
+                block.style.background = tb.color;
+                block.dataset.id = tb.id;
+                
+                // Tap to populate time picker with this block's time
+                block.addEventListener('click', () => {
+                    const startTime = blockToTime(tb.startBlock);
+                    const endTime = blockToTime(tb.endBlock + 1);
+                    
+                    const startInput = document.getElementById('mobile-start-time');
+                    const endInput = document.getElementById('mobile-end-time');
+                    
+                    if (startInput && endInput) {
+                        startInput.value = `${String(startTime.hour).padStart(2, '0')}:${String(startTime.minute).padStart(2, '0')}`;
+                        endInput.value = `${String(endTime.hour).padStart(2, '0')}:${String(endTime.minute).padStart(2, '0')}`;
+                        
+                        // Trigger change to update preview
+                        startInput.dispatchEvent(new Event('change'));
+                    }
+                    
+                    scrollToBlock(tb.id);
                 });
+                
+                bar.appendChild(block);
             });
+            
+            // Update summary
+            if (timeBlocks.length === 0) {
+                summary.textContent = 'No blocks yet';
+            } else {
+                const hours = Math.floor(totalMinutes / 60);
+                const mins = totalMinutes % 60;
+                summary.textContent = `${timeBlocks.length} blocks · ${hours}h ${mins}m logged`;
+            }
         }
         
         function scrollToBlock(id) {
@@ -2622,8 +3505,52 @@
             goToToday();
         }
         
+        // Mobile swipe navigation for changing days
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+        const swipeThreshold = 80;
+        
+        function initSwipeNavigation() {
+            const dayView = document.getElementById('day-view');
+            const header = dayView.querySelector('header');
+            
+            if (!header) return;
+            
+            header.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                touchStartY = e.changedTouches[0].screenY;
+            }, { passive: true });
+            
+            header.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                touchEndY = e.changedTouches[0].screenY;
+                handleSwipe();
+            }, { passive: true });
+            
+            function handleSwipe() {
+                const diffX = touchEndX - touchStartX;
+                const diffY = touchEndY - touchStartY;
+                
+                // Only handle horizontal swipes (ignore if more vertical)
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > swipeThreshold) {
+                    if (diffX > 0) {
+                        // Swipe right - go to previous day
+                        previousDay();
+                    } else {
+                        // Swipe left - go to next day
+                        nextDay();
+                    }
+                }
+            }
+        }
+        
         // Initialize
         initFromURL();
+        initSwipeNavigation();
+        initMobileTabs();
+        initMobileTimePicker();
         
         // Update every minute (only if viewing today)
         setInterval(() => {
