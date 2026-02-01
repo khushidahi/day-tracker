@@ -21,7 +21,11 @@ There's also:
 
 I use this from my phone constantly, so the mobile experience had to be good.
 
-![Mobile Timeline](screenshots/mobile-timeline.png)
+<p>
+  <img src="screenshots/mobile-timeline.png" width="280" alt="Mobile Timeline">
+  &nbsp;&nbsp;
+  <img src="screenshots/mobile-create.png" width="280" alt="Mobile Create">
+</p>
 
 The desktop grid doesn't work well on a small screen, so mobile gets a different UI:
 - **Visual timeline bar** — your whole day shown as a compact horizontal bar with colored blocks
@@ -31,8 +35,6 @@ The desktop grid doesn't work well on a small screen, so mobile gets a different
 - **Swipe navigation** — swipe on the header to jump between days
 
 Tap any block on the timeline to select it and see its details.
-
-![Mobile Create](screenshots/mobile-create.png)
 
 ## Running it
 
