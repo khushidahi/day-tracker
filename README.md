@@ -11,9 +11,12 @@ Your day is shown as a grid of 5-minute blocks (288 total). You drag to select a
 There's also:
 - A daily planning section where you can jot down what you want to get done
 - A dashboard that shows where your time went over any date range
+- History view to browse past days — useful for weekly reviews or seeing what you were up to last Tuesday
 - Works on mobile (I use it from my phone a lot)
 
 ![Dashboard](screenshots/dashboard.png)
+
+![History](screenshots/history.png)
 
 ## Running it
 
