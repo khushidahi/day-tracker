@@ -1,0 +1,96 @@
+{
+  "timeBlocks": [
+    {
+      "id": 1769966244955,
+      "name": "Sleep",
+      "startBlock": 0,
+      "endBlock": 95,
+      "color": "#fa709a",
+      "accomplishment": "",
+      "createdAt": "2026-02-01T17:17:24.955Z"
+    },
+    {
+      "id": 1769966266079,
+      "name": "Feeling unwell + curing headache + shower",
+      "startBlock": 96,
+      "endBlock": 147,
+      "color": "#fee140",
+      "accomplishment": "",
+      "createdAt": "2026-02-01T17:17:46.079Z"
+    },
+    {
+      "id": 1769967034431,
+      "name": "Improving day planner",
+      "startBlock": 148,
+      "endBlock": 149,
+      "color": "#a8edea",
+      "category": "Planning",
+      "accomplishment": "",
+      "createdAt": "2026-02-01T17:30:34.431Z"
+    },
+    {
+      "id": 1769968288185,
+      "name": "Planning food",
+      "startBlock": 150,
+      "endBlock": 154,
+      "color": "#a8edea",
+      "category": "Planning",
+      "accomplishment": "",
+      "createdAt": "2026-02-01T17:51:28.185Z"
+    },
+    {
+      "id": 1769973474435,
+      "name": "Call with parents",
+      "startBlock": 164,
+      "endBlock": 171,
+      "color": "#fee140",
+      "category": "Social",
+      "accomplishment": "",
+      "createdAt": "2026-02-01T19:17:54.435Z"
+    },
+    {
+      "id": 1769973502393,
+      "name": "Untitled Block",
+      "startBlock": 155,
+      "endBlock": 163,
+      "color": "#43e97b",
+      "category": "Health",
+      "accomplishment": "",
+      "createdAt": "2026-02-01T19:18:22.393Z"
+    }
+  ],
+  "dayPlan": [
+    {
+      "text": "Work on late chunking eval",
+      "completed": false,
+      "createdAt": "2026-02-01T17:30:57.033Z"
+    },
+    {
+      "text": "Go to metro - body wash, face care, makeup",
+      "completed": false,
+      "createdAt": "2026-02-01T17:31:27.524Z"
+    },
+    {
+      "text": "Clean up house",
+      "completed": false,
+      "createdAt": "2026-02-01T17:32:39.515Z"
+    },
+    {
+      "text": "Metro - eggs",
+      "completed": false,
+      "createdAt": "2026-02-01T17:35:47.051Z"
+    },
+    {
+      "text": "metro - greek yoghurt",
+      "completed": false,
+      "createdAt": "2026-02-01T17:40:17.797Z"
+    }
+  ],
+  "customCategories": [
+    {
+      "name": "Planning",
+      "color": "#a8edea"
+    }
+  ],
+  "lastModified": "2026-02-01T19:18:22.902Z"
+}
